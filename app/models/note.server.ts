@@ -23,6 +23,13 @@ export function getNoteListItems({ userId }: { userId: User["id"] }) {
   });
 }
 
+export function getIndexNoteListItems() {
+  return prisma.note.findMany({
+    select: { id: true, title: true },
+    orderBy: { updatedAt: "desc" },
+  });
+}
+
 export function createNote({
   body,
   title,

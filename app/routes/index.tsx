@@ -1,13 +1,36 @@
+import { json } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 import Header from "~/components/Header";
 import { useOptionalUser } from "~/utils";
+import { LoaderFunction } from "@remix-run/server-runtime";
+import { useLoaderData, NavLink } from "@remix-run/react";
 
+import { getIndexNoteListItems } from "~/models/note.server";
+
+type LoaderData = {
+  noteListItems: Awaited<ReturnType<typeof getIndexNoteListItems>>;
+};
+
+export const loader: LoaderFunction = async () => {
+  const noteListItems = await getIndexNoteListItems();
+  return json<LoaderData>({ noteListItems });
+};
 export default function Index() {
+  const data = useLoaderData() as LoaderData;
   const user = useOptionalUser();
   return (
     <>
       <Header />
       <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
+        {data.noteListItems.length === 0 ? (
+          <p className="p-4">No notes yet</p>
+        ) : (
+          <div>
+            {data.noteListItems.map((note) => (
+              <li key={note.id}>📝 {note.title}</li>
+            ))}
+          </div>
+        )}
         <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
           {user ? (
             <Link
