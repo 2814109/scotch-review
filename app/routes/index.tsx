@@ -3,7 +3,7 @@ import { Link } from "@remix-run/react";
 import Header from "~/components/Header";
 import { useOptionalUser } from "~/utils";
 import { LoaderFunction } from "@remix-run/server-runtime";
-import { useLoaderData, NavLink } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 
 import { getIndexNoteListItems } from "~/models/note.server";
 
