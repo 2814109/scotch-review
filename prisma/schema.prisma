@@ -39,15 +39,15 @@ model Note {
 
 model UserRole {
   id String @id @default(cuid())
-   
-
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
   userId String 
   roleId String
+  user User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  role Role  @relation(fields: [roleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Role {
   id String @id @default(cuid())
   roleName String
+
+  userRoles UserRole[]
 }
