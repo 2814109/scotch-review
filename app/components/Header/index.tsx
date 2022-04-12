@@ -26,11 +26,11 @@ const Header: FC = () => {
             <ul className="flex list-none flex-col lg:ml-auto lg:flex-row">
               <li className="nav-item">
                 <Link
-                  to="scotch/tastings"
+                  to="scotch/review"
                   className="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:opacity-75"
                 >
                   <MdOutlineHowToVote />
-                  <span className="ml-2">味見</span>
+                  <span className="ml-2">レビュー</span>
                 </Link>
               </li>
               <li className="nav-item">
