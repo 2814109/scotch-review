@@ -1,11 +1,11 @@
 import { ChangeEvent, FC, useState } from "react";
-import LabelInput from "../common/Form/LabelInput";
+import LabelInput from "../../../common/Form/LabelInput";
 import CloseButton from "~/components/aspect/admin/common/Form/CloseButton";
-type ScotchFormProps = {
-  setIsOpen: (isOpen: boolean) => void;
-  isOpen: boolean;
-};
-const ScotchForm: FC<ScotchFormProps> = ({ setIsOpen, isOpen }) => {
+import { useRecoilState } from "recoil";
+import ScotchFormIsOpen from "~/state/atoms/ScotchFormIsOpen";
+
+const ScotchForm: FC = () => {
+  const [isOpen, setIsOpen] = useRecoilState(ScotchFormIsOpen);
   const [formData, setFormData] = useState<any>();
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -15,7 +15,7 @@ const ScotchForm: FC<ScotchFormProps> = ({ setIsOpen, isOpen }) => {
       tabIndex={-1}
       className="h-modal fixed top-0 left-0 right-0 z-50 w-full overflow-y-auto overflow-x-hidden md:inset-0 md:h-full"
     >
-      <div className="relative h-full w-full p-24 md:h-auto">
+      <div className="relative h-full w-full p-36 md:h-auto">
         <div className="relative rounded-lg bg-white p-8 shadow dark:bg-gray-700">
           <div className="flex items-start justify-between rounded-t border-b p-4 dark:border-gray-600">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
