@@ -1,13 +1,17 @@
-import { FC } from "react";
-
+import { ChangeEvent, FC, useState } from "react";
+import LabelInput from "../common/Form/LabelInput";
+import CloseButton from "~/components/aspect/admin/common/Form/CloseButton";
 type ScotchFormProps = {
   setIsOpen: (isOpen: boolean) => void;
   isOpen: boolean;
 };
 const ScotchForm: FC<ScotchFormProps> = ({ setIsOpen, isOpen }) => {
+  const [formData, setFormData] = useState<any>();
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
   return (
     <div
-      id="defaultModal"
       tabIndex={-1}
       className="h-modal fixed top-0 left-0 right-0 z-50 w-full overflow-y-auto overflow-x-hidden md:inset-0 md:h-full"
     >
@@ -39,91 +43,69 @@ const ScotchForm: FC<ScotchFormProps> = ({ setIsOpen, isOpen }) => {
           </div>
           <div className="space-y-6 p-6">
             <form>
-              <div className="group relative z-0 mb-6 w-full">
-                <input
-                  type="text"
-                  value=""
-                  name="bottle_name"
-                  className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
-                  placeholder=" "
-                  required
-                />
-                <label
-                  htmlFor="bottle_name"
-                  className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
-                >
-                  Bottle Name
-                </label>
+              <div className="grid xl:grid-cols-2 xl:gap-6">
+                <div className="group relative z-0 mb-6 w-full">
+                  <LabelInput
+                    labelName="Bottle Name"
+                    type="text"
+                    value=""
+                    name="bottle_name"
+                    placeholder=" "
+                    required
+                    onChange={onChange}
+                  />
+                </div>
+
+                <div className="group relative z-0 mb-6 w-full">
+                  <LabelInput
+                    labelName="Limited"
+                    type="text"
+                    value=""
+                    name="limited"
+                    placeholder=" "
+                    required
+                    onChange={onChange}
+                  />
+                </div>
               </div>
 
               <div className="grid xl:grid-cols-2 xl:gap-6">
                 <div className="group relative z-0 mb-6 w-full">
-                  <input
+                  <LabelInput
+                    labelName="Price"
                     type="text"
+                    value=""
                     name="price"
-                    className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
                     placeholder=" "
                     required
+                    onChange={onChange}
                   />
-                  <label
-                    htmlFor="price"
-                    className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
-                  >
-                    Price
-                  </label>
                 </div>
 
                 <div className="group relative z-0 mb-6 w-full">
-                  <input
+                  <LabelInput
+                    labelName="Age"
                     type="number"
+                    value=""
                     name="age"
-                    className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
                     placeholder=" "
                     required
+                    onChange={onChange}
                   />
-                  <label
-                    htmlFor="age"
-                    className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
-                  >
-                    Age
-                  </label>
                 </div>
-              </div>
-
-              <div className="group relative z-0 mb-6 w-full">
-                <input
-                  type="text"
-                  name="limited"
-                  className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
-                  placeholder=" "
-                  required
-                />
-                <label
-                  htmlFor="limited"
-                  className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
-                >
-                  Limited
-                </label>
               </div>
             </form>
           </div>
 
           <div className="flex items-center space-x-2 rounded-b border-t border-gray-200 p-6 dark:border-gray-600">
             <button
-              data-modal-toggle="defaultModal"
               type="button"
               className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Submit
             </button>
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              data-modal-toggle="defaultModal"
-              type="button"
-              className="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
-            >
-              Close
-            </button>
+
+            <CloseButton setIsOpen={setIsOpen} isOpenState={isOpen} />
           </div>
         </div>
       </div>
