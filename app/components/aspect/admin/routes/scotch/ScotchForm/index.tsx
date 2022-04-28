@@ -1,12 +1,15 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC } from "react";
 import LabelInput from "../../../common/Form/LabelInput";
 import CloseButton from "~/components/aspect/admin/common/Form/CloseButton";
 import { useRecoilState } from "recoil";
+import ScotchState from "~/state/atoms/ScotchState";
+import { ScotchType } from "~/types/resources/Scotch";
+import ScotchFormHeader from "./ScotchFormHeader";
 import ScotchFormIsOpen from "~/state/atoms/ScotchFormIsOpen";
 
 const ScotchForm: FC = () => {
   const [isOpen, setIsOpen] = useRecoilState(ScotchFormIsOpen);
-  const [formData, setFormData] = useState<any>();
+  const [formData, setFormData] = useRecoilState<ScotchType>(ScotchState);
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -18,28 +21,7 @@ const ScotchForm: FC = () => {
       <div className="relative h-full w-full p-36 md:h-auto">
         <div className="relative rounded-lg bg-white p-8 shadow dark:bg-gray-700">
           <div className="flex items-start justify-between rounded-t border-b p-4 dark:border-gray-600">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Scotch Form
-            </h3>
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              type="button"
-              className="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-toggle="defaultModal"
-            >
-              <svg
-                className="h-5 w-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </button>
+            <ScotchFormHeader />
           </div>
           <div className="space-y-6 p-6">
             <form>
@@ -48,8 +30,8 @@ const ScotchForm: FC = () => {
                   <LabelInput
                     labelName="Bottle Name"
                     type="text"
-                    value=""
-                    name="bottle_name"
+                    value={formData.bottleName}
+                    name="bottleName"
                     placeholder=" "
                     required
                     onChange={onChange}
@@ -60,7 +42,7 @@ const ScotchForm: FC = () => {
                   <LabelInput
                     labelName="Limited"
                     type="text"
-                    value=""
+                    value={formData.limited}
                     name="limited"
                     placeholder=" "
                     required
@@ -74,7 +56,7 @@ const ScotchForm: FC = () => {
                   <LabelInput
                     labelName="Price"
                     type="text"
-                    value=""
+                    value={formData.price}
                     name="price"
                     placeholder=" "
                     required
@@ -86,7 +68,7 @@ const ScotchForm: FC = () => {
                   <LabelInput
                     labelName="Age"
                     type="number"
-                    value=""
+                    value={formData.age}
                     name="age"
                     placeholder=" "
                     required
@@ -99,6 +81,7 @@ const ScotchForm: FC = () => {
 
           <div className="flex items-center space-x-2 rounded-b border-t border-gray-200 p-6 dark:border-gray-600">
             <button
+              onClick={() => console.log(formData)}
               type="button"
               className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >

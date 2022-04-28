@@ -1,7 +1,7 @@
 import { FC } from "react";
 import ScotchForm from "~/components/aspect/admin/routes/scotch/ScotchForm";
 import SearchContent from "~/components/aspect/admin/routes/scotch/SearchContent";
-import { RecoilRoot, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import ScotchFormIsOpen from "~/state/atoms/ScotchFormIsOpen";
 
 const ScotchIndex: FC = () => {
