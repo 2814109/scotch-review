@@ -1,7 +1,7 @@
 import type { User, Scotch } from "@prisma/client";
 import { prisma } from "~/db.server";
 
-export function createNote({
+export function createScotch({
   bottleName,
   price,
   age,

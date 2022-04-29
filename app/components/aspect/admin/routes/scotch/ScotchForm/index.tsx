@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from "react";
-import { Form } from "@remix-run/react";
+import { Form, useActionData } from "@remix-run/react";
 
 import LabelInput from "../../../common/Form/LabelInput";
 import CloseButton from "~/components/aspect/admin/common/Form/CloseButton";
@@ -8,8 +8,10 @@ import ScotchState from "~/state/atoms/ScotchState";
 import ScotchFormHeader from "./ScotchFormHeader";
 import ScotchFormIsOpen from "~/state/atoms/ScotchFormIsOpen";
 import type { Scotch } from "@prisma/client";
-
+import { ScotchFormActionData } from "~/types/form/scotch";
 const ScotchForm: FC = () => {
+  const actionData = useActionData() as ScotchFormActionData;
+
   const [isOpen, setIsOpen] = useRecoilState(ScotchFormIsOpen);
   const [formData, setFormData] =
     useRecoilState<
