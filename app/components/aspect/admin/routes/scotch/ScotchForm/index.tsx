@@ -1,4 +1,6 @@
 import { ChangeEvent, FC } from "react";
+import { Form } from "@remix-run/react";
+
 import LabelInput from "../../../common/Form/LabelInput";
 import CloseButton from "~/components/aspect/admin/common/Form/CloseButton";
 import { useRecoilState } from "recoil";
@@ -24,7 +26,7 @@ const ScotchForm: FC = () => {
             <ScotchFormHeader />
           </div>
           <div className="space-y-6 p-6">
-            <form>
+            <Form method="post" action="/api/scotch/new">
               <div className="grid xl:grid-cols-2 xl:gap-6">
                 <div className="group relative z-0 mb-6 w-full">
                   <LabelInput
@@ -55,7 +57,7 @@ const ScotchForm: FC = () => {
                 <div className="group relative z-0 mb-6 w-full">
                   <LabelInput
                     labelName="Price"
-                    type="text"
+                    type="number"
                     value={formData.price}
                     name="price"
                     placeholder=" "
@@ -76,18 +78,15 @@ const ScotchForm: FC = () => {
                   />
                 </div>
               </div>
-            </form>
+              <input
+                type="submit"
+                className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                value="Save"
+              />
+            </Form>
           </div>
 
           <div className="flex items-center space-x-2 rounded-b border-t border-gray-200 p-6 dark:border-gray-600">
-            <button
-              onClick={() => console.log(formData)}
-              type="button"
-              className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Submit
-            </button>
-
             <CloseButton setIsOpen={setIsOpen} isOpenState={isOpen} />
           </div>
         </div>
