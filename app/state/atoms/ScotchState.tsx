@@ -1,14 +1,16 @@
 import { atom } from "recoil";
-import { ScotchType } from "~/types/resources/Scotch";
+import type { Scotch } from "@prisma/client";
 
-const ScotchState = atom<ScotchType>({
+const ScotchState = atom<
+  Pick<Scotch, "id" | "bottleName" | "age" | "price" | "limited">
+>({
   key: "ScotchState",
   default: {
     id: "",
     bottleName: "",
     limited: "",
-    price: "",
-    age: "",
+    price: 0,
+    age: 0,
   },
 });
 
