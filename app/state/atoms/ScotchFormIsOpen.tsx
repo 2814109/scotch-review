@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 const ScotchFormIsOpen = atom({
   key: "ScotchFormIsOpen",
-  default: true,
+  default: false,
 });
 
 export default ScotchFormIsOpen;

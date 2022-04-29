@@ -6,16 +6,11 @@ import ScotchFormIsOpen from "~/state/atoms/ScotchFormIsOpen";
 
 const ScotchIndex: FC = () => {
   const isOpen = useRecoilValue(ScotchFormIsOpen);
-  const scotchList = [...Array(10)].map((_, index) => {
-    return { id: index };
-  });
+
   return (
     <>
       <SearchContent />
 
-      {scotchList.map((_) => {
-        return <h1>title</h1>;
-      })}
       {isOpen && <ScotchForm />}
     </>
   );
