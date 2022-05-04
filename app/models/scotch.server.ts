@@ -25,3 +25,10 @@ export function createScotch({
     },
   });
 }
+
+export function getIndexScotchListItems() {
+  return prisma.scotch.findMany({
+    select: { id: true },
+    orderBy: { updatedAt: "desc" },
+  });
+}

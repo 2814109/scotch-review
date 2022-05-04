@@ -1,16 +1,17 @@
-import { ChangeEvent, FC } from "react";
-import { Form, useActionData } from "@remix-run/react";
+import { ChangeEvent, FC, useEffect } from "react";
+import { Form, useActionData, useLocation } from "@remix-run/react";
 
 import LabelInput from "../../../common/Form/LabelInput";
 import CloseButton from "~/components/aspect/admin/common/Form/CloseButton";
 import { useRecoilState } from "recoil";
-import ScotchState from "~/state/atoms/ScotchState";
+import ScotchState, { initValues } from "~/state/atoms/ScotchState";
 import ScotchFormHeader from "./ScotchFormHeader";
 import ScotchFormIsOpen from "~/state/atoms/ScotchFormIsOpen";
 import type { Scotch } from "@prisma/client";
-import { ScotchFormActionData } from "~/types/form/scotch";
+// import { ScotchFormActionData } from "~/types/form/scotch";
+
 const ScotchForm: FC = () => {
-  const actionData = useActionData() as ScotchFormActionData;
+  // const actionData = useActionData() as ScotchFormActionData;
 
   const [isOpen, setIsOpen] = useRecoilState(ScotchFormIsOpen);
   const [formData, setFormData] =
@@ -20,6 +21,13 @@ const ScotchForm: FC = () => {
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setFormData(initValues);
+  }, [location.key]);
+
   return (
     <div
       tabIndex={-1}
