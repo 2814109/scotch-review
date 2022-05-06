@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { useRecoilValue } from "recoil";
-import ScotchListState from "~/state/atoms/ScotchListState";
+import FilteredScotchListState from "~/state/selecotors/FilteredScotchListState";
 
 const ScotchList: FC = () => {
-  const scotchList = useRecoilValue(ScotchListState);
+  const scotchList = useRecoilValue(FilteredScotchListState);
   const headers = [
     "Bottle Name",
     "Price",
