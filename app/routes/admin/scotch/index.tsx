@@ -7,7 +7,7 @@ import { getIndexScotchListItems } from "~/models/scotch.server";
 import { useLoaderData } from "@remix-run/react";
 import { LoaderFunction } from "@remix-run/server-runtime";
 import { json } from "@remix-run/node";
-
+import ScotchTable from "~/components/aspect/admin/routes/scotch/ScotchTable";
 type LoaderData = {
   scotchListItems: Awaited<ReturnType<typeof getIndexScotchListItems>>;
 };
@@ -28,6 +28,7 @@ const ScotchIndex: FC = () => {
       {isOpen && <ScotchForm />}
 
       {/* create scotch list ( read index of scotch) */}
+      <ScotchTable />
     </>
   );
 };
