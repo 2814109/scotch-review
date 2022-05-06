@@ -10,6 +10,7 @@ import { json } from "@remix-run/node";
 import ScotchTable from "~/components/aspect/admin/routes/scotch/ScotchTable";
 import { useSetRecoilState } from "recoil";
 import ScotchListState from "~/state/atoms/ScotchListState";
+import { useLocation } from "@remix-run/react";
 
 type LoaderData = {
   scotchListItems: Awaited<ReturnType<typeof getIndexScotchListItems>>;
@@ -24,9 +25,16 @@ const ScotchIndex: FC = () => {
   const isOpen = useRecoilValue(ScotchFormIsOpen);
   const scotchList = useLoaderData() as LoaderData;
   const setScotchList = useSetRecoilState(ScotchListState);
+
   useEffect(() => {
     setScotchList(scotchList.scotchListItems);
   }, []);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setScotchList(scotchList.scotchListItems);
+  }, [location.key]);
 
   return (
     <>
