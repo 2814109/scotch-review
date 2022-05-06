@@ -26,9 +26,26 @@ export function createScotch({
   });
 }
 
+// id: string;
+// bottleName: string;
+// age: number;
+// limited: string;
+// price: number;
+// stars: number;
+// createdAt: Date;
+// updatedAt: Date;
 export function getIndexScotchListItems() {
   return prisma.scotch.findMany({
-    select: { id: true },
+    select: {
+      id: true,
+      bottleName: true,
+      age: true,
+      price: true,
+      limited: true,
+      stars: true,
+      createdAt: true,
+      updatedAt: true,
+    },
     orderBy: { updatedAt: "desc" },
   });
 }
