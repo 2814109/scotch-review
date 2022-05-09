@@ -60,7 +60,7 @@ const ScotchForm: FC = () => {
                     value={formData.limited}
                     name="limited"
                     placeholder=" "
-                    required
+                    required={false}
                     onChange={onChange}
                   />
                 </div>

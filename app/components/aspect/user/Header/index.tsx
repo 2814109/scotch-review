@@ -16,7 +16,7 @@ const Header: FC = () => {
               className="mr-4 inline-block whitespace-nowrap py-2 text-sm font-bold uppercase leading-relaxed text-white"
               to="/"
             >
-              美味いスコッチが飲みたい
+              Scotch Review
             </Link>
           </div>
           <div
