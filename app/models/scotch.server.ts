@@ -26,14 +26,6 @@ export function createScotch({
   });
 }
 
-// id: string;
-// bottleName: string;
-// age: number;
-// limited: string;
-// price: number;
-// stars: number;
-// createdAt: Date;
-// updatedAt: Date;
 export function getIndexScotchListItems() {
   return prisma.scotch.findMany({
     select: {
@@ -47,5 +39,11 @@ export function getIndexScotchListItems() {
       updatedAt: true,
     },
     orderBy: { updatedAt: "desc" },
+  });
+}
+
+export function deleteScotch({ id }: Pick<Scotch, "id">) {
+  return prisma.scotch.deleteMany({
+    where: { id },
   });
 }
