@@ -28,7 +28,7 @@ export default function Index() {
             {data.scotchListItems.map((scotch) => (
               <div
                 key={scotch.id}
-                className="h-max overflow-hidden rounded shadow-lg"
+                className="h-64 overflow-hidden rounded shadow-lg"
               >
                 <div className="px-6 py-4">
                   <div className="mb-2 text-xl font-bold">
