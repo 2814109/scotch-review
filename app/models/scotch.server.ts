@@ -1,6 +1,8 @@
 import type { User, Scotch } from "@prisma/client";
 import { prisma } from "~/db.server";
 
+export type { Scotch } from "@prisma/client";
+
 export function createScotch({
   bottleName,
   price,
@@ -47,3 +49,9 @@ export function deleteScotch({ id }: Pick<Scotch, "id">) {
     where: { id },
   });
 }
+
+export const getScotch = ({ id }: Pick<Scotch, "id">) => {
+  return prisma.scotch.findFirst({
+    where: { id },
+  });
+};
