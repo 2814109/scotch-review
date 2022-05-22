@@ -32,7 +32,7 @@ export default function Index() {
               >
                 <div className="px-6 py-4">
                   <div className="mb-2 text-xl font-bold">
-                    {scotch.bottleName} {scotch.age > 0 && scotch.age + "年"}
+                    {scotch.bottleName} {scotch.age > 0 && `${scotch.age} 年`}
                   </div>
                   <RatingIcon starCount={scotch.stars} />
                   <p className="text-base">Limited:{scotch.limited}</p>
