@@ -67,15 +67,16 @@ const Header: FC = () => {
                   <li className="nav-item">
                     <Link
                       to="/join"
-                      className="mr-4 flex items-center justify-center rounded-md border border-transparent bg-white px-2 py-1 text-base font-medium text-blue-900 shadow-sm hover:bg-blue-50 sm:px-8"
+                      className="flex items-center justify-center rounded-md bg-white px-2 py-1 text-base font-medium text-blue-900 shadow-sm hover:bg-blue-50 sm:px-8"
                     >
                       Sign up
                     </Link>
                   </li>
+
                   <li className="nav-item">
                     <Link
                       to="/login"
-                      className="flex items-center justify-center rounded-md bg-blue-800 px-4 py-1 font-medium text-white hover:bg-blue-900 sm:px-8"
+                      className="flex items-center justify-center rounded-md bg-blue-800 px-2 py-1 font-medium text-white hover:bg-blue-900 sm:px-8"
                     >
                       Log In
                     </Link>
