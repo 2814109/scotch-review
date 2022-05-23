@@ -21,10 +21,7 @@ export default function Index() {
       <Header />
       <main className="relative bg-white p-4 sm:flex sm:justify-center">
         {data.scotchListItems.length === 0 ? null : (
-          <div
-            className="grid grid-cols-3 gap-4 px-4"
-            //className="mx-auto"
-          >
+          <div className="grid grid-cols-3 gap-4 px-4">
             {data.scotchListItems.map((scotch) => (
               <div
                 key={scotch.id}

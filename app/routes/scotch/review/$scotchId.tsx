@@ -2,14 +2,16 @@ import { FC } from "react";
 import { getScotch } from "~/models/scotch.server";
 import type { Scotch } from "~/models/scotch.server";
 import { json } from "@remix-run/node";
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
-import { Form, useCatch, useLoaderData } from "@remix-run/react";
+import type { LoaderFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import { MdOutlineHowToVote } from "react-icons/md";
 import invariant from "tiny-invariant";
 import { useRecoilValue } from "recoil";
 import { useRecoilState } from "recoil";
 import ReviewFormIsOpen from "~/state/review/atoms/ReviewFormIsOpen";
 import ReviewForm from "~/components/aspect/user/routes/review/ReviewForm";
+import ConfirmationForm from "~/components/aspect/user/routes/review/ConfirmationForm";
+import { useOptionalUser } from "~/utils";
 
 type LoaderData = {
   scotch: Scotch;
@@ -31,6 +33,8 @@ const ScotchDetailPage: FC = () => {
   // TODO コンポーネント切り分けの際に状態管理をリファクタリング
   const [isOpen, setIsOpen] = useRecoilState(ReviewFormIsOpen);
 
+  const user = useOptionalUser();
+
   return (
     <>
       <div className="sm:flex sm:justify-center">
@@ -47,7 +51,7 @@ const ScotchDetailPage: FC = () => {
           </div>
         </button>
       </div>
-      {isOpen && <ReviewForm />}
+      {isOpen && (user ? <ReviewForm /> : <ConfirmationForm />)}
     </>
   );
 };
