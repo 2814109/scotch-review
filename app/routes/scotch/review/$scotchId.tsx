@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 import { useRecoilState } from "recoil";
 import ReviewFormIsOpen from "~/state/review/atoms/ReviewFormIsOpen";
 import ReviewForm from "~/components/aspect/user/routes/review/ReviewForm";
-import ConfirmationForm from "~/components/aspect/user/routes/review/ConfirmationForm";
+import ConfirmationModal from "~/components/aspect/user/routes/review/ConfirmationModal";
 import { useOptionalUser } from "~/utils";
 import CreateButton from "~/components/aspect/user/routes/review/CreateButton";
 type LoaderData = {
@@ -38,7 +38,7 @@ const ScotchDetailPage: FC = () => {
         <h1>{data.scotch.bottleName}</h1>
       </div>
       <CreateButton />
-      {isOpen && (user ? <ReviewForm /> : <ConfirmationForm />)}
+      {!isOpen && (user ? <ReviewForm /> : <ConfirmationModal />)}
     </>
   );
 };

@@ -2,14 +2,11 @@ import { FC } from "react";
 import ReviewFormIsOpen from "~/state/review/atoms/ReviewFormIsOpen";
 import { useRecoilState } from "recoil";
 
-const ConfirmationFormHeader: FC = () => {
+const ConfirmationModalHeader: FC = () => {
   const [isOpen, setIsOpen] = useRecoilState(ReviewFormIsOpen);
 
   return (
     <>
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-        Confirmation Form
-      </h3>
       <button
         onClick={() => setIsOpen(!isOpen)}
         type="button"
@@ -31,4 +28,4 @@ const ConfirmationFormHeader: FC = () => {
     </>
   );
 };
-export default ConfirmationFormHeader;
+export default ConfirmationModalHeader;
