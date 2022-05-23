@@ -4,9 +4,9 @@ import { Form, useActionData, useLocation } from "@remix-run/react";
 import LabelInput from "../../../common/Form/LabelInput";
 import CloseButton from "~/components/aspect/admin/common/Form/CloseButton";
 import { useRecoilState } from "recoil";
-import ScotchState, { initValues } from "~/state/atoms/ScotchState";
+import ScotchState, { initValues } from "~/state/scotch/atoms/ScotchState";
 import ScotchFormHeader from "./ScotchFormHeader";
-import ScotchFormIsOpen from "~/state/atoms/ScotchFormIsOpen";
+import ScotchFormIsOpen from "~/state/scotch/atoms/ScotchFormIsOpen";
 import type { Scotch } from "@prisma/client";
 // import { ScotchFormActionData } from "~/types/form/scotch";
 

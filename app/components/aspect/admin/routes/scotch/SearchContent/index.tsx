@@ -1,8 +1,8 @@
 import { FC, ChangeEvent } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { useRecoilState } from "recoil";
-import ScotchFormIsOpen from "~/state/atoms/ScotchFormIsOpen";
-import ScotchSearchKeywordState from "~/state/atoms/ScotchSearchKeyword";
+import ScotchFormIsOpen from "~/state/scotch/atoms/ScotchFormIsOpen";
+import ScotchSearchKeywordState from "~/state/scotch/atoms/ScotchSearchKeyword";
 const SearchContent: FC = () => {
   const [isOpen, setIsOpen] = useRecoilState(ScotchFormIsOpen);
   const [keyword, setKeyword] = useRecoilState(ScotchSearchKeywordState);

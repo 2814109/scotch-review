@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useRecoilValue } from "recoil";
-import FilteredScotchListState from "~/state/selecotors/FilteredScotchListState";
+import FilteredScotchListState from "~/state/scotch/selecotors/FilteredScotchListState";
 import { Form } from "@remix-run/react";
 
 const ScotchList: FC = () => {
