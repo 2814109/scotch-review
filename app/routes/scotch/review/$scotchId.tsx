@@ -4,7 +4,7 @@ import type { Scotch } from "~/models/scotch.server";
 import { json } from "@remix-run/node";
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
-
+import { MdOutlineHowToVote } from "react-icons/md";
 import invariant from "tiny-invariant";
 
 type LoaderData = {
@@ -24,7 +24,21 @@ export const loader: LoaderFunction = async ({ params }) => {
 const ScotchDetailPage: FC = () => {
   const data = useLoaderData() as LoaderData;
 
-  return <h1>{data.scotch.bottleName}</h1>;
+  return (
+    <>
+      <div className="sm:flex sm:justify-center">
+        <h1>{data.scotch.bottleName}</h1>
+      </div>
+      <div className="sm:flex sm:justify-center">
+        <button className="rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
+          <div className="flex items-center p-1">
+            <span className="mr-2">Create Review</span>
+            <MdOutlineHowToVote />
+          </div>
+        </button>
+      </div>
+    </>
+  );
 };
 
 export default ScotchDetailPage;
