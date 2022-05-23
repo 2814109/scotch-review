@@ -1,4 +1,4 @@
-import Header from "~/components/aspect/user/Header";
+import Header from "~/components/aspect/user/common/Header";
 
 import { Outlet } from "@remix-run/react";
 

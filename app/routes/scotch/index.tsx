@@ -3,7 +3,7 @@ import { useOptionalUser } from "~/utils";
 import { LoaderFunction } from "@remix-run/server-runtime";
 import { useLoaderData } from "@remix-run/react";
 import { getIndexScotchListItems } from "~/models/scotch.server";
-import SctochCard from "~/components/aspect/user/ScotchCard";
+import SctochCard from "~/components/aspect/user/routes/scotch/ScotchCard";
 type LoaderData = {
   scotchListItems: Awaited<ReturnType<typeof getIndexScotchListItems>>;
 };

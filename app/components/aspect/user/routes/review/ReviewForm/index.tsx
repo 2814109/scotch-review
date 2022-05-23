@@ -5,15 +5,15 @@ import LabelInput from "../../../../common/Form/LabelInput";
 import CloseButton from "~/components/aspect/common/Form/CloseButton";
 import { useRecoilState } from "recoil";
 import ScotchState, { initValues } from "~/state/scotch/atoms/ScotchState";
-import ScotchFormHeader from "./ScotchFormHeader";
-import ScotchFormIsOpen from "~/state/scotch/atoms/ScotchFormIsOpen";
+import ReviewFormHeader from "./ReviewFormHeader";
+import ReviewFormIsOpen from "~/state/review/atoms/ReviewFormIsOpen";
 import type { Scotch } from "@prisma/client";
 // import { ScotchFormActionData } from "~/types/form/scotch";
 
 const ScotchForm: FC = () => {
   // const actionData = useActionData() as ScotchFormActionData;
 
-  const [isOpen, setIsOpen] = useRecoilState(ScotchFormIsOpen);
+  const [isOpen, setIsOpen] = useRecoilState(ReviewFormIsOpen);
   const [formData, setFormData] =
     useRecoilState<
       Pick<Scotch, "id" | "bottleName" | "price" | "age" | "limited">
@@ -36,7 +36,7 @@ const ScotchForm: FC = () => {
       <div className="relative h-full w-full p-36 md:h-auto">
         <div className="relative rounded-lg bg-white p-8 shadow dark:bg-gray-700">
           <div className="flex items-start justify-between rounded-t border-b p-4 dark:border-gray-600">
-            <ScotchFormHeader />
+            <ReviewFormHeader />
           </div>
           <div className="space-y-6 p-6">
             <Form method="post" action="/api/scotch/create">

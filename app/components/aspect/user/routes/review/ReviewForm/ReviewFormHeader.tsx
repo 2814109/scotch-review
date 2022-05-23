@@ -1,14 +1,14 @@
 import { FC } from "react";
-import ScotchFormIsOpen from "~/state/scotch/atoms/ScotchFormIsOpen";
+import ReviewFormIsOpen from "~/state/review/atoms/ReviewFormIsOpen";
 import { useRecoilState } from "recoil";
 
-const ScotchFormHeader: FC = () => {
-  const [isOpen, setIsOpen] = useRecoilState(ScotchFormIsOpen);
+const ReviewFormHeader: FC = () => {
+  const [isOpen, setIsOpen] = useRecoilState(ReviewFormIsOpen);
 
   return (
     <>
       <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-        Scotch Form
+        Review Form
       </h3>
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -31,4 +31,4 @@ const ScotchFormHeader: FC = () => {
     </>
   );
 };
-export default ScotchFormHeader;
+export default ReviewFormHeader;
