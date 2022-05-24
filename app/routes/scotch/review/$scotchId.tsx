@@ -38,7 +38,7 @@ const ScotchDetailPage: FC = () => {
         <h1>{data.scotch.bottleName}</h1>
       </div>
       <CreateButton />
-      {!isOpen && (user ? <ReviewForm /> : <ConfirmationModal />)}
+      {isOpen && (user ? <ReviewForm /> : <ConfirmationModal />)}
     </>
   );
 };

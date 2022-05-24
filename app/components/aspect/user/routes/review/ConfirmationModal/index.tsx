@@ -24,9 +24,16 @@ const ConfirmationModal: FC = () => {
           <div className="m-3 flex justify-center">
             <Link
               to="/join"
-              className="rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+              className="m-3 rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
             >
-              会員登録はこちら
+              新規会員登録はこちら
+            </Link>
+
+            <Link
+              to="/login"
+              className="m-3 rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+            >
+              既に会員の方はこちら
             </Link>
           </div>
           <div className="flex items-center space-x-2 rounded-b border-t border-gray-200 p-6 dark:border-gray-600">

@@ -43,7 +43,7 @@ const ScotchForm: FC = () => {
               <div className="grid xl:grid-cols-2 xl:gap-6">
                 <div className="group relative z-0 mb-6 w-full">
                   <LabelInput
-                    labelName="Bottle Name"
+                    labelName="Star"
                     type="text"
                     value={formData.bottleName}
                     name="bottleName"
@@ -55,38 +55,12 @@ const ScotchForm: FC = () => {
 
                 <div className="group relative z-0 mb-6 w-full">
                   <LabelInput
-                    labelName="Limited"
+                    labelName="Comment"
                     type="text"
                     value={formData.limited}
                     name="limited"
                     placeholder=" "
                     required={false}
-                    onChange={onChange}
-                  />
-                </div>
-              </div>
-
-              <div className="grid xl:grid-cols-2 xl:gap-6">
-                <div className="group relative z-0 mb-6 w-full">
-                  <LabelInput
-                    labelName="Price"
-                    type="number"
-                    value={formData.price}
-                    name="price"
-                    placeholder=" "
-                    required
-                    onChange={onChange}
-                  />
-                </div>
-
-                <div className="group relative z-0 mb-6 w-full">
-                  <LabelInput
-                    labelName="Age"
-                    type="number"
-                    value={formData.age}
-                    name="age"
-                    placeholder=" "
-                    required
                     onChange={onChange}
                   />
                 </div>

@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 
 async function seed() {
   const email = "@remix.run";
+  const password = "racheliscool";
 
   // cleanup the existing database
   await prisma.user.deleteMany().catch(() => {
@@ -39,7 +40,7 @@ async function seed() {
     },
   });
 
-  const hashedPassword = await bcrypt.hash("racheliscool", 10);
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   // Userの作成
   const manager = await prisma.user.create({
