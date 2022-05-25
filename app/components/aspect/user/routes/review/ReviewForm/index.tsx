@@ -41,7 +41,7 @@ const ScotchForm: FC = () => {
           <div className="space-y-6 p-6">
             <Form method="post" action="">
               <div className="grid xl:grid-cols-2 xl:gap-6">
-                <div className="group relative z-0 mb-6 w-full">
+                <div className="flex justify-center">
                   <ActiveRating />
                 </div>
 
