@@ -1,10 +1,9 @@
 import { json } from "@remix-run/node";
-import Header from "~/components/aspect/user/common/Header";
 import { useOptionalUser } from "~/utils";
 import { LoaderFunction } from "@remix-run/server-runtime";
-import { Link, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { getIndexScotchListItems } from "~/models/scotch.server";
-
+import SctochCard from "~/components/aspect/user/routes/scotch/ScotchCard";
 type LoaderData = {
   scotchListItems: Awaited<ReturnType<typeof getIndexScotchListItems>>;
 };
@@ -18,10 +17,13 @@ export default function Index() {
   const user = useOptionalUser();
   return (
     <>
-      <Header />
-      <main className="relative bg-white p-4 sm:flex sm:justify-center">
-        <Link to="scotch">Scotch Page</Link>
-      </main>
+      {data.scotchListItems.length === 0 ? null : (
+        <div className="grid grid-cols-3 gap-4 px-4">
+          {data.scotchListItems.map((scotch) => (
+            <SctochCard key={scotch.id} scotch={scotch} />
+          ))}
+        </div>
+      )}
     </>
   );
 }
