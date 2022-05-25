@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Scotch } from "@prisma/client";
-import RatingIcon from "~/components/aspect/common/RatingIcon";
+import RatingIcon from "~/components/aspect/common/Rating/RatingIcon";
 import { Link } from "@remix-run/react";
 
 type Props = {

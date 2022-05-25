@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, useEffect } from "react";
 import { Form, useActionData, useLocation } from "@remix-run/react";
-
+import ActiveRating from "~/components/aspect/common/Rating/ActiveRating";
 import LabelInput from "../../../../common/Form/LabelInput";
 import CloseButton from "~/components/aspect/common/Form/CloseButton";
 import { useRecoilState } from "recoil";
@@ -39,18 +39,10 @@ const ScotchForm: FC = () => {
             <ReviewFormHeader />
           </div>
           <div className="space-y-6 p-6">
-            <Form method="post" action="/api/scotch/create">
+            <Form method="post" action="">
               <div className="grid xl:grid-cols-2 xl:gap-6">
                 <div className="group relative z-0 mb-6 w-full">
-                  <LabelInput
-                    labelName="Star"
-                    type="text"
-                    value={formData.bottleName}
-                    name="bottleName"
-                    placeholder=" "
-                    required
-                    onChange={onChange}
-                  />
+                  <ActiveRating />
                 </div>
 
                 <div className="group relative z-0 mb-6 w-full">
@@ -58,7 +50,7 @@ const ScotchForm: FC = () => {
                     labelName="Comment"
                     type="text"
                     value={formData.limited}
-                    name="limited"
+                    name="comment"
                     placeholder=" "
                     required={false}
                     onChange={onChange}

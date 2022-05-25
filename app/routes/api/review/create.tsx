@@ -1,8 +1,11 @@
 import type { ActionFunction } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
+import {
+  //json,
+  redirect,
+} from "@remix-run/node";
 import { requireUserId } from "~/session.server";
 import { createReview } from "~/models/review.server";
-import { ScotchFormActionData } from "~/types/form/scotch";
+// import { ScotchFormActionData } from "~/types/form/scotch";
 
 export const action: ActionFunction = async ({ request }) => {
   const userId = await requireUserId(request);
