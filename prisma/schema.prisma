@@ -33,7 +33,6 @@ model Scotch {
   age Int
   limited String
   price Int
-  stars Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   

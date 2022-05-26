@@ -10,7 +10,6 @@ const ScotchList: FC = () => {
     "Price",
     "Age",
     "Limited",
-    "stars",
     "Create At",
     "Update At",
     // "Edit",
@@ -57,12 +56,6 @@ const ScotchList: FC = () => {
                     <td className="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
                       <div className="text-sm leading-5">
                         {scotchData.limited}
-                      </div>
-                    </td>
-
-                    <td className="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
-                      <div className="text-sm leading-5">
-                        {scotchData.stars}
                       </div>
                     </td>
 

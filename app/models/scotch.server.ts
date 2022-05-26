@@ -17,7 +17,6 @@ export function createScotch({
 }) {
   return prisma.scotch.create({
     data: {
-      stars: 0,
       bottleName,
       price,
       age,
@@ -39,7 +38,6 @@ export function getIndexScotchListItems() {
       age: true,
       price: true,
       limited: true,
-      stars: true,
       createdAt: true,
       updatedAt: true,
       reviews: {
@@ -67,7 +65,6 @@ export const getScotch = ({ id }: Pick<Scotch, "id">) => {
       age: true,
       price: true,
       limited: true,
-      stars: true,
       createdAt: true,
       updatedAt: true,
       reviews: {
