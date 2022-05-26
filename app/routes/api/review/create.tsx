@@ -50,5 +50,5 @@ export const action: ActionFunction = async ({ request }) => {
     userId,
   });
 
-  return redirect(`/admin/scotch/${scotchId}`);
+  return redirect(`/scotch/review/${scotchId}`);
 };

@@ -11,7 +11,11 @@ import type { Review } from "@prisma/client";
 import TextArea from "~/components/aspect/common/Form/TextArea";
 // import { ScotchFormActionData } from "~/types/form/scotch";
 import ReviewState, { ReviewStateType } from "~/state/review/atoms/ReviewState";
-const ScotchForm: FC = () => {
+
+type Props = {
+  scotchId: string;
+};
+const ScotchForm: FC<Props> = ({ scotchId }) => {
   // const actionData = useActionData() as ScotchFormActionData;
 
   const [isOpen, setIsOpen] = useRecoilState(ReviewFormIsOpen);
@@ -19,8 +23,14 @@ const ScotchForm: FC = () => {
   const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  console.log(formData);
 
+  useEffect(() => {
+    setFormData({ ...formData, scotchId: scotchId });
+  }, []);
+
+  const onChangeStar = (starCount: number) => {
+    setFormData({ ...formData, star: starCount });
+  };
   return (
     <div
       tabIndex={-1}
@@ -32,10 +42,14 @@ const ScotchForm: FC = () => {
             <ReviewFormHeader />
           </div>
           <div className="space-y-6 p-6">
-            <Form method="post" action="">
+            <Form method="post" action="/api/review/create">
+              <input type="hidden" name="scotchId" value={scotchId} />
               <div className="grid xl:grid-cols-2 xl:gap-6">
                 <div className="flex justify-center">
-                  <ActiveRating />
+                  <ActiveRating
+                    formDataStar={formData.star}
+                    setFormDataStar={onChangeStar}
+                  />
                 </div>
 
                 <div className="group relative z-0 mb-6 w-full">

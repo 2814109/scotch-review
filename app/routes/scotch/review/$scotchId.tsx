@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { getScotch } from "~/models/scotch.server";
 import type { Scotch } from "~/models/scotch.server";
 import { json } from "@remix-run/node";
@@ -13,6 +13,8 @@ import ReviewForm from "~/components/aspect/user/routes/review/ReviewForm";
 import ConfirmationModal from "~/components/aspect/user/routes/review/ConfirmationModal";
 import { useOptionalUser } from "~/utils";
 import CreateButton from "~/components/aspect/user/routes/review/CreateButton";
+import { useLocation } from "@remix-run/react";
+
 type LoaderData = {
   scotch: Scotch;
 };
@@ -29,16 +31,25 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 const ScotchDetailPage: FC = () => {
   const data = useLoaderData() as LoaderData;
-  const isOpen = useRecoilValue(ReviewFormIsOpen);
+  const [isOpen, setIsOpen] = useRecoilState(ReviewFormIsOpen);
   const user = useOptionalUser();
 
+  const location = useLocation();
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.key]);
   return (
     <>
       <div className="sm:flex sm:justify-center">
         <h1>{data.scotch.bottleName}</h1>
       </div>
       <CreateButton />
-      {isOpen && (user ? <ReviewForm /> : <ConfirmationModal />)}
+      {isOpen &&
+        (user ? (
+          <ReviewForm scotchId={data.scotch.id} />
+        ) : (
+          <ConfirmationModal />
+        ))}
     </>
   );
 };
