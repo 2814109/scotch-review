@@ -7,26 +7,19 @@ import { useRecoilState } from "recoil";
 import ScotchState, { initValues } from "~/state/scotch/atoms/ScotchState";
 import ReviewFormHeader from "./ReviewFormHeader";
 import ReviewFormIsOpen from "~/state/review/atoms/ReviewFormIsOpen";
-import type { Scotch } from "@prisma/client";
+import type { Review } from "@prisma/client";
+import TextArea from "~/components/aspect/common/Form/TextArea";
 // import { ScotchFormActionData } from "~/types/form/scotch";
-
+import ReviewState, { ReviewStateType } from "~/state/review/atoms/ReviewState";
 const ScotchForm: FC = () => {
   // const actionData = useActionData() as ScotchFormActionData;
 
   const [isOpen, setIsOpen] = useRecoilState(ReviewFormIsOpen);
-  const [formData, setFormData] =
-    useRecoilState<
-      Pick<Scotch, "id" | "bottleName" | "price" | "age" | "limited">
-    >(ScotchState);
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const [formData, setFormData] = useRecoilState<ReviewStateType>(ReviewState);
+  const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-
-  const location = useLocation();
-
-  useEffect(() => {
-    setFormData(initValues);
-  }, [location.key]);
+  console.log(formData);
 
   return (
     <div
@@ -46,13 +39,10 @@ const ScotchForm: FC = () => {
                 </div>
 
                 <div className="group relative z-0 mb-6 w-full">
-                  <LabelInput
-                    labelName="Comment"
-                    type="text"
-                    value={formData.limited}
+                  <TextArea
+                    label={"comment"}
                     name="comment"
-                    placeholder=" "
-                    required={false}
+                    value={formData.comment}
                     onChange={onChange}
                   />
                 </div>
