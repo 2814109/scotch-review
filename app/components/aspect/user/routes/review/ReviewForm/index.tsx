@@ -31,6 +31,8 @@ const ScotchForm: FC<Props> = ({ scotchId }) => {
   const onChangeStar = (starCount: number) => {
     setFormData({ ...formData, star: starCount });
   };
+
+  console.log(formData);
   return (
     <div
       tabIndex={-1}
@@ -44,6 +46,7 @@ const ScotchForm: FC<Props> = ({ scotchId }) => {
           <div className="space-y-6 p-6">
             <Form method="post" action="/api/review/create">
               <input type="hidden" name="scotchId" value={scotchId} />
+              <input type="hidden" name="star" value={formData.star} />
               <div className="grid xl:grid-cols-2 xl:gap-6">
                 <div className="flex justify-center">
                   <ActiveRating
