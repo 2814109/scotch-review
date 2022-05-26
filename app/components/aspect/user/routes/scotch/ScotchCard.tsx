@@ -1,10 +1,9 @@
 import { FC } from "react";
-import { Scotch, Review } from "@prisma/client";
 import RatingIcon from "~/components/aspect/common/Rating/RatingIcon";
 import { Link } from "@remix-run/react";
-
+import { ScotchDetail } from "~/models/scotch.server";
 type Props = {
-  scotch: Omit<Scotch, "userId"> & { reviews: Pick<Review, "star">[] };
+  scotch: ScotchDetail;
 };
 const ScotchCard: FC<Props> = ({ scotch }) => {
   const countStars = scotch.reviews.reduce((sum, { star }) => {

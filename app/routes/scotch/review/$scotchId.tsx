@@ -18,8 +18,10 @@ import { useLocation } from "@remix-run/react";
 import { getReviewListItems } from "~/models/review.server";
 import { ReviewListItem } from "~/models/review.server";
 import RatingIcon from "~/components/aspect/common/Rating/RatingIcon";
+import { ScotchDetail } from "~/models/scotch.server";
+import ScotchCard from "~/components/aspect/user/routes/scotch/ScotchCard";
 type LoaderData = {
-  scotch: Scotch;
+  scotch: ScotchDetail;
   reviews: ReviewListItem[];
 };
 
@@ -50,7 +52,7 @@ const ScotchDetailPage: FC = () => {
   return (
     <>
       <div className="flex justify-center">
-        <h1>{data.scotch.bottleName}</h1>
+        <ScotchCard scotch={data.scotch} />
       </div>
       <div className="m-3">
         <CreateButton />

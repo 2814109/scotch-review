@@ -1,8 +1,11 @@
-import type { User, Scotch } from "@prisma/client";
+import type { User, Scotch, Review } from "@prisma/client";
 import { prisma } from "~/db.server";
 
 export type { Scotch } from "@prisma/client";
 
+export type ScotchDetail = Omit<Scotch, "userId"> & {
+  reviews: Pick<Review, "star">[];
+};
 export function createScotch({
   bottleName,
   price,
@@ -58,5 +61,20 @@ export function deleteScotch({ id }: Pick<Scotch, "id">) {
 export const getScotch = ({ id }: Pick<Scotch, "id">) => {
   return prisma.scotch.findFirst({
     where: { id },
+    select: {
+      id: true,
+      bottleName: true,
+      age: true,
+      price: true,
+      limited: true,
+      stars: true,
+      createdAt: true,
+      updatedAt: true,
+      reviews: {
+        select: {
+          star: true,
+        },
+      },
+    },
   });
 };
