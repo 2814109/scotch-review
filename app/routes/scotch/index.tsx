@@ -18,7 +18,7 @@ export default function Index() {
   return (
     <>
       {data.scotchListItems.length === 0 ? null : (
-        <div className="grid grid-cols-3 gap-4 px-4">
+        <div className="grid  gap-4 px-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {data.scotchListItems.map((scotch) => (
             <SctochCard key={scotch.id} scotch={scotch} />
           ))}
