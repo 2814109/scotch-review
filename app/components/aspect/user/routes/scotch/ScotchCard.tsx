@@ -13,7 +13,6 @@ const ScotchCard: FC<Props> = ({ scotch }) => {
   const average = Number.isNaN(countStars / scotch.reviews.length)
     ? 0
     : countStars / scotch.reviews.length;
-  console.log(average);
   return (
     <div className="">
       <Link to={`/scotch/review/${scotch.id}`}>
@@ -25,6 +24,7 @@ const ScotchCard: FC<Props> = ({ scotch }) => {
             <div className="flex items-center justify-center">
               <RatingIcon starCount={Math.floor(average)} />
               <span className="m-1">{Math.floor(average * 100) / 100}</span>
+              <span>{`(${scotch.reviews.length})`}</span>
             </div>
             <p className="text-base">Limited:{scotch.limited}</p>
 
