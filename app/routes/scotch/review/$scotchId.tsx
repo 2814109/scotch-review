@@ -31,7 +31,7 @@ export const loader: LoaderFunction = async ({ params }) => {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const reviews = await getReviewListItems();
+  const reviews = await getReviewListItems({ scotchId: params.scotchId });
   if (!reviews) {
     throw new Response("Not Found", { status: 404 });
   }

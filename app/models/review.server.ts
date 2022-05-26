@@ -32,8 +32,13 @@ export function createReview({
   });
 }
 
-export const getReviewListItems = () => {
+export const getReviewListItems = ({
+  scotchId,
+}: {
+  scotchId: Review["scotchId"];
+}) => {
   return prisma.review.findMany({
+    where: { scotchId: scotchId },
     select: {
       id: true,
       star: true,
