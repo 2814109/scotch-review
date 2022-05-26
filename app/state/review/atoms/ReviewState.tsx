@@ -1,12 +1,8 @@
 import { atom } from "recoil";
 import type { Review } from "@prisma/client";
 
-export type ReviewStateType = Pick<
-  Review,
-  "id" | "star" | "comment" | "scotchId"
->;
+export type ReviewStateType = Pick<Review, "star" | "comment" | "scotchId">;
 export const initValues: ReviewStateType = {
-  id: "",
   star: 0,
   comment: "",
   scotchId: "",

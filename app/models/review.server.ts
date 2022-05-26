@@ -1,5 +1,10 @@
 import { prisma } from "~/db.server";
 import type { User, Scotch, Review } from "@prisma/client";
+export type { Review } from "@prisma/client";
+
+export type ReviewListItem = Omit<Review, "scotchId" | "userId"> & {
+  user: Pick<User, "email">;
+};
 
 export function createReview({
   star,
@@ -26,3 +31,21 @@ export function createReview({
     },
   });
 }
+
+export const getReviewListItems = () => {
+  return prisma.review.findMany({
+    select: {
+      id: true,
+      star: true,
+      comment: true,
+      createdAt: true,
+      updatedAt: true,
+      user: {
+        select: {
+          email: true,
+        },
+      },
+    },
+    orderBy: { updatedAt: "desc" },
+  });
+};

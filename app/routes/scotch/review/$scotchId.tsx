@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import { getScotch } from "~/models/scotch.server";
 import type { Scotch } from "~/models/scotch.server";
+import { Review } from "~/models/review.server";
 import { json } from "@remix-run/node";
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
@@ -14,9 +15,11 @@ import ConfirmationModal from "~/components/aspect/user/routes/review/Confirmati
 import { useOptionalUser } from "~/utils";
 import CreateButton from "~/components/aspect/user/routes/review/CreateButton";
 import { useLocation } from "@remix-run/react";
-
+import { getReviewListItems } from "~/models/review.server";
+import { ReviewListItem } from "~/models/review.server";
 type LoaderData = {
   scotch: Scotch;
+  reviews: ReviewListItem[];
 };
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -26,7 +29,12 @@ export const loader: LoaderFunction = async ({ params }) => {
   if (!scotch) {
     throw new Response("Not Found", { status: 404 });
   }
-  return json<LoaderData>({ scotch });
+
+  const reviews = await getReviewListItems();
+  if (!reviews) {
+    throw new Response("Not Found", { status: 404 });
+  }
+  return json<LoaderData>({ scotch, reviews });
 };
 
 const ScotchDetailPage: FC = () => {
@@ -50,6 +58,13 @@ const ScotchDetailPage: FC = () => {
         ) : (
           <ConfirmationModal />
         ))}
+      <div className="sm:flex sm:justify-center">
+        <div>
+          {data.reviews.map((review) => {
+            return <h1>{review.star}</h1>;
+          })}
+        </div>
+      </div>
     </>
   );
 };
