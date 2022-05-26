@@ -39,6 +39,11 @@ export function getIndexScotchListItems() {
       stars: true,
       createdAt: true,
       updatedAt: true,
+      reviews: {
+        select: {
+          star: true,
+        },
+      },
     },
     orderBy: { updatedAt: "desc" },
   });

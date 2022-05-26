@@ -14,7 +14,7 @@ const Header: FC = () => {
           <div className="relative flex w-full justify-between lg:static lg:block lg:w-auto lg:justify-start">
             <Link
               className="mr-4 inline-block whitespace-nowrap py-2 text-sm font-bold uppercase leading-relaxed text-white"
-              to="/"
+              to="/scotch"
             >
               Scotch Review
             </Link>
@@ -24,7 +24,7 @@ const Header: FC = () => {
             id="example-navbar-danger"
           >
             <ul className="flex list-none flex-col lg:ml-auto lg:flex-row">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link
                   to="scotch/review"
                   className="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:opacity-75"
@@ -32,8 +32,8 @@ const Header: FC = () => {
                   <MdOutlineHowToVote />
                   <span className="ml-2">レビュー</span>
                 </Link>
-              </li>
-              <li className="nav-item">
+              </li> */}
+              {/* <li className="nav-item">
                 <Link
                   to="scotch/"
                   className="flex items-center px-3 py-2 text-xs font-bold uppercase leading-snug text-white hover:opacity-75"
@@ -50,7 +50,7 @@ const Header: FC = () => {
                   <MdOutlineHowToVote />
                   <span className="ml-2">コンセプト</span>
                 </Link>
-              </li>
+              </li> */}
               {user ? (
                 <li className="nav-item">
                   <Form action="/logout" method="post">

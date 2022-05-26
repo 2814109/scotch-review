@@ -14,16 +14,15 @@ export const loader: LoaderFunction = async () => {
 };
 export default function Index() {
   const data = useLoaderData() as LoaderData;
+
   const user = useOptionalUser();
   return (
     <>
-      {data.scotchListItems.length === 0 ? null : (
-        <div className="grid  gap-4 px-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {data.scotchListItems.map((scotch) => (
-            <SctochCard key={scotch.id} scotch={scotch} />
-          ))}
-        </div>
-      )}
+      <div className="grid  gap-4 px-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {data?.scotchListItems?.map((scotch) => (
+          <SctochCard key={scotch.id} scotch={scotch} />
+        ))}
+      </div>
     </>
   );
 }
