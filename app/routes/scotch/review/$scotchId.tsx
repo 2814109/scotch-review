@@ -17,6 +17,7 @@ import CreateButton from "~/components/aspect/user/routes/review/CreateButton";
 import { useLocation } from "@remix-run/react";
 import { getReviewListItems } from "~/models/review.server";
 import { ReviewListItem } from "~/models/review.server";
+import RatingIcon from "~/components/aspect/common/Rating/RatingIcon";
 type LoaderData = {
   scotch: Scotch;
   reviews: ReviewListItem[];
@@ -48,20 +49,50 @@ const ScotchDetailPage: FC = () => {
   }, [location.key]);
   return (
     <>
-      <div className="sm:flex sm:justify-center">
+      <div className="flex justify-center">
         <h1>{data.scotch.bottleName}</h1>
       </div>
-      <CreateButton />
-      {isOpen &&
-        (user ? (
-          <ReviewForm scotchId={data.scotch.id} />
-        ) : (
-          <ConfirmationModal />
-        ))}
-      <div className="sm:flex sm:justify-center">
+      <div className="m-3">
+        <CreateButton />
+        {isOpen &&
+          (user ? (
+            <ReviewForm scotchId={data.scotch.id} />
+          ) : (
+            <ConfirmationModal />
+          ))}
+      </div>
+      <div className="flex justify-center">
         <div>
           {data.reviews.map((review) => {
-            return <h1>{review.star}</h1>;
+            return (
+              <div key={review.id}>
+                <div className="w-full max-w-sm lg:flex lg:max-w-full">
+                  <div className="m-2 flex flex-col justify-between rounded rounded-b  rounded-b-none border-r border-b border-l border-t border-gray-400 border-gray-400 bg-white p-4 leading-normal">
+                    <div className="mb-8">
+                      <p className="flex items-center text-sm text-gray-600">
+                        {user?.email}
+                      </p>
+                      <div className="mb-2 text-xl font-bold text-gray-900">
+                        <RatingIcon starCount={review.star} />
+                      </div>
+                      <p className="text-base text-gray-700">
+                        {review.comment}
+                      </p>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="text-sm">
+                        <p className="leading-none text-gray-900">
+                          {review.createdAt}
+                        </p>
+                        <p className="leading-none text-gray-900">
+                          {review.updatedAt}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
           })}
         </div>
       </div>
